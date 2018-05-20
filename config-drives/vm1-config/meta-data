@@ -1,0 +1,18 @@
+instance-id: vm1-123
+hostname: vm1
+local-hostname: vm1
+public-keys:
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+wPpJ9KQfMRlJUHkNhV8mWBFPny2Nl79dLVMt9/dWj8raHMjWRxguI0PRpZOBR4XHEzdj6K5/HppVxEj/ivIdsPATkCAB2fK3zChafiflk0FeDDo+v1d8ZCVDijR2Hvd9A5zrZGPhH2MW9bX0sGKTJiDykwT0173W0JcuSGGkDfuvq6E9avhWHAVr4looUC5PT3yPMtKuB3vAtn8bwQPV05IQRnkhha4JBaXuc4LICpQ59e2EajyoMa/S93cR5Wqdx9fMPJ4Xy0NXobLM1BPje9aMAwmHLphyjxOErtdwJt9LjD/GWokF7/b1s24smECzBIwu5RO+NoxftHGwuaV5 root@user
+network-interfaces: |
+  auto ens3
+  iface ens3 inet dhcp
+  
+  auto ens4
+  iface ens4 inet static
+  address 192.168.124.101
+  netmask 255.255.255.0
+  
+  auto ens5 
+  iface ens5 inet static
+  address 192.168.125.101
+  netmask 255.255.255.0

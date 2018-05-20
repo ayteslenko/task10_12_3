@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
+ip link add vxlan0 type vxlan id 12345 remote 192.168.124.102 local 192.168.124.101 dstport 4789
+ip link set vxlan0 up
+ip addr add 10.255.0.101/24 dev vxlan0
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+apt-get update
+apt-get install docker-ce -y
+mount /dev/cdrom /mnt
+cp -r /mnt/docker /home/ubuntu
+umount /dev/cdrom
+docker run -d -v /home/ubuntu/docker/etc/:/etc/nginx/conf.d -v /home/ubuntu/docker/certs:/etc/ssl/certs -v /srv/log/nginx:/var/log/nginx -p 17080:443 nginx:1.13
